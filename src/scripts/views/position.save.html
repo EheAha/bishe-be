@@ -1,0 +1,52 @@
+<div class="box box-info">
+  <div class="box-header with-border">
+    <h3 class="box-title">添加</h3>
+  </div>
+  <!-- /.box-header -->
+  <!-- form start -->
+  <form class="form-horizontal" id="possave" action="/api/position/save" method="post" enctype="multipart/form-data">
+    <div class="box-body">
+      <div class="form-group">
+        <label for="companyLogo" class="col-sm-2 control-label">电影图片</label>
+
+        <div class="col-sm-10">
+          <input type="file" class="form-control" name="movieLogo" id="companyLogo" placeholder="请选择电影图片">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="companyName" class="col-sm-2 control-label">电影名称</label>
+
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="movieName" id="companyName" placeholder="请输入电影名称">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="positionName" class="col-sm-2 control-label">电影评分</label>
+
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="movieScore" id="positionName" placeholder="请输入电影评分">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="city" class="col-sm-2 control-label">电影主演</label>
+
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="starring" id="city" placeholder="请输入电影主演">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="salary" class="col-sm-2 control-label">上映信息</label>
+
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="releasedInfo" id="salary" placeholder="请输入电影上映信息">
+        </div>
+      </div>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+      <button type="button" id="posback" class="btn btn-default">返回</button>
+      <button type="button" id="possubmit" class="btn btn-info pull-right">提交</button>
+    </div>
+    <!-- /.box-footer -->
+  </form>
+</div>

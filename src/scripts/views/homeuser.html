@@ -1,0 +1,103 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">个人信息</h3>
+    </div>
+    <div class="panel-body" id="userhome">
+        {{ if userLogo == '' }}
+        <img src="./public/images/user2-160x160.jpg" class="img-thumbnail">
+        {{ else }}
+        <img src="http://localhost:3000/users/{{ userLogo }}" class="img-thumbnail">
+        {{ /if }}
+    </div>
+    <table class="table">
+        <th>基本信息</th>
+        <tr>
+            <td>昵称</td>
+            {{ if userStyle == '' }}
+            <td class="text-info">请设置你的昵称</td>
+            {{ else }}
+            <td class="text-info">{{ userStyle }}</td>
+            {{ /if }}
+        </tr>
+        <tr>
+            <td>手机号</td>
+            <td>{{ phone }}</td>
+        </tr>
+    </table>
+    <table class="table">
+        <th>个性签名</th>
+        <tr>
+            <td class="text-success">
+                {{ if userStylename == '' }}
+                <h3><strong><em>请设置你的个性签名</em></strong></h3>
+                {{ else }}
+                <h3><strong><em>{{ userStylename }}</em></strong></h3>
+                {{ /if }}
+            </td>
+        </tr>
+    </table>
+    <div class="panel-footer"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">修改</button></div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">个人信息</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="usersave" action="/api/users/userupdate" method="post" enctype="multipart/form-data">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="userLogo" class="col-sm-2 control-label">头像：</label>
+
+                            <div class="col-sm-10">
+                                {{ if userLogo == '' }}
+                                <img id="previewuser" src="./public/images/user2-160x160.jpg " style="width:50px;height:50px;"
+                                    alt="">
+                                {{ else }}
+                                <img id="previewuser" src="http://localhost:3000/users/{{ userLogo }}" style="width:50px;height:50px;"
+                                    alt="">
+                                {{ /if }}
+                                <input type="file" class="form-control" name="userLogo" id="userLogo" placeholder="请选择头像图片">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="userStyle" class="col-sm-2 control-label">昵称：</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="userStyle" id="userStyle" placeholder="请输入您的昵称"
+                                    value="{{ userStyle }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="col-sm-2 control-label">手机号：</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="phone" id="phone" placeholder="请输入手机号"
+                                    value="{{ phone }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="userStylename" class="col-sm-2 control-label">签名：</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="userStylename" id="userStylename"
+                                    placeholder="请输入个性签名" value="{{ userStylename }}">
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="id" id="id" value="{{ _id }}" />
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="button" id="userback" data-dismiss="modal" class="btn btn-default">返回</button>
+                        <button type="button" id="usersubmit"  data-dismiss="modal" class="btn btn-info pull-right">提交</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal -->
+</div>
