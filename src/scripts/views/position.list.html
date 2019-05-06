@@ -17,7 +17,7 @@
   <div class="box-body">
     <table class="table table-bordered table-hover table-striped text-center">
       <tr>
-        <th style="width: 10px">#</th>
+        <th style="width: 10px">id</th>
         <th>电影图片</th>
         <th>电影名称</th>
         <th>电影评分</th>
@@ -27,7 +27,7 @@
       </tr>
       {{ each list }}
       <tr data-id="{{ $value._id }}">
-        <td>{{ $index + (~~pageSize * (~~pageNo - 1)) + 1 }}</td>
+        <td>{{ $value.movieId }}</td>
         <td><img width="50" height="50" src="http://localhost:3000/uploads/{{ $value.movieLogo }}" alt=""></td>
         <td>{{ $value.movieName }}</td>
         <td>{{ $value.movieScore }}</td>
