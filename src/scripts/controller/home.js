@@ -66,47 +66,34 @@ const _registerbtnClick = ({
             data
         })
         console.log(result)
-        if (result.ret) {
+        if (!result.ret) {
             _btnlogin()
             $('#phone').val('')
             $('#username').val('')
             $('#password').val('')
             $('#passwords').val('')
         } else {
-            alert("登录失败~~")
+            // alert("登录失败~~")
+            alert(result.data.msg)
         }
 
     })
 }
 
-const _signinbtnClick = ({
-    router
-}) => {
+const _signinbtnClick = ({ router }) => {
     $('#signin').on('click', async () => {
         var username = $('#signuser').val()
         var password = $('#signpas').val()
-
-        let result = await userModel.signin({
-            username,
-            password
-        })
-        console.log(result)
+        let result = await userModel.signin({ username, password })
         if (result.ret) {
-            //渲染成功的操作
             let username = result.data.username
             let isSignin = true
-            $('#user').html(template.render(userTpl, {
-                isSignin,
-                username
-            }))
+            $('#user').html(template.render(userTpl, { isSignin, username }))
             _removeClick({ router })
-            router.go('/home_user', {
-                username
-            })
+            router.go('/home_user', { username })
         } else {
             alert(result.data.msg)
         }
-
     })
 }
 
@@ -115,7 +102,7 @@ const _removeClick = ({
 }) => {
     $('#remove').on('click', async () => {
         let result = await userModel.signout()
-        
+
         $('#usersave').modal('hide');
 
         router.go('/haha')
@@ -128,9 +115,9 @@ const _userupdate = ({
     $('#usersubmit').on('click', async () => {
         //let data = $('#usersave').serialize()
         let result = await userModel.userupdate()
-        setTimeout(()=>{
+        setTimeout(() => {
             router.go('/home')
-        },300)
+        }, 300)
     })
 
     $('#userLogo').change(function () {
@@ -194,7 +181,7 @@ const user = async ({
     let { username } = req.body
     let result = await userModel.findone({ username })
     let { userStyle, phone, userStylename, userLogo, _id } = result.data
-    
+
     let isSignin = true
     $('#user').html(template.render(userTpl, {
         isSignin,
